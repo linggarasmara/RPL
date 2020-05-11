@@ -28,17 +28,21 @@ XML :
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/konsul_card"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:layout_width="160dp"
             android:layout_height="190dp"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+           >
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:background="@color/gradient">
+
 
                 <ImageView
                     android:layout_width="73dp"
@@ -172,18 +176,38 @@ Java :
 package com.example.splashscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.view.View;
 
 
-public class Menu extends AppCompatActivity {
+public class Menu extends AppCompatActivity implements View.OnClickListener {
 
-
-
+    private CardView konsulCard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+
+        //define card
+        konsulCard = (CardView) findViewById(R.id.konsul_card);
+        //add click listener
+        konsulCard.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent;
+
+        switch (v.getId()){
+        case R.id.konsul_card:
+        intent = new Intent(this, Konsultasi.class); startActivity(intent);break;
+
+            default:break;
+
+    }
     }
 }
